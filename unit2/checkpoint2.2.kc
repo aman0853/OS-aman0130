@@ -1,4 +1,4 @@
- import "string"
+import "string"
 #pragma link("mega65hyper.ld")
 const char* RASTER = 0xd012;
 const char* VIC_MEMORY = 0xd018;
@@ -8,7 +8,7 @@ const char* COLS = 0xd800;
 const char BLACK = 0;
 const char WHITE = 1;
 
-char[] MESSAGE = "Checkpoint 2.2 by aman0130";
+char[] MESSAGE = "checkpoint 2.2 by aman0130";
 
 void main(){
 	*VIC_MEMORY = 0x14;
