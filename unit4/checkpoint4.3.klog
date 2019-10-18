@@ -1,0 +1,29 @@
+parsing
+flex pass 1
+flex pass 2
+flex pass 3
+Output pass
+Writing prg file: checkpoint4.3.bin
+Writing prg file: /home/student/repo/unit4/checkpoint4.3.prg
+
+Memory Map
+----------
+Default-segment:
+  $2000-$200b Default
+
+XMega65Bin-segment:
+
+Syscall-segment:
+  $8000-$81bf Syscall
+
+Code-segment:
+  $8200-$84fc Code
+
+Data-segment:
+  $84fd-$853a Data
+
+Stack-segment:
+
+Zeropage-segment:
+
+Writing Vice symbol file: /home/student/repo/unit4/checkpoint4.3.vs

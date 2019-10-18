@@ -1,0 +1,11 @@
+import "myabi"
+
+void main(){
+
+call_syscall00();
+call_syscall01();
+
+while(true)
+continue;
+
+}

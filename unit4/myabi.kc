@@ -1,0 +1,19 @@
+void enable_syscalls(){
+
+*(unsigned char *)$D02F = $47;
+*(unsigned char *)$D02F = $53;
+}
+
+void call_syscall00(){
+
+enable_syscalls();
+*(unsigned char *)$D640 = $00;
+asm { nop }
+}
+
+void call_syscall01(){
+enable_syscalls();
+*(unsigned char *)$D641 = $00;
+asm { nop }
+}
+

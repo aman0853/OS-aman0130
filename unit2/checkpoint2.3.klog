@@ -1,0 +1,25 @@
+parsing
+flex pass 1
+flex pass 2
+flex pass 3
+Output pass
+Writing prg file: checkpoint2.3.bin
+
+Memory Map
+----------
+XMega65Bin-segment:
+
+Syscall-segment:
+  $8000-$81ff Syscall
+
+Code-segment:
+  $8200-$83d6 Code
+
+Data-segment:
+  $83d7-$83f1 Data
+
+Stack-segment:
+
+Zeropage-segment:
+
+Writing Vice symbol file: /home/student/repo/unit2/checkpoint2.3.vs

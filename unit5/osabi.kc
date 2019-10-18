@@ -1,0 +1,50 @@
+
+void enable_syscalls() {
+	*(unsigned char *)$D02F = $47;
+	*(unsigned char *)$D02F = $53;
+}
+
+void process_info()
+{
+	enable_syscalls();
+	*(unsigned char *)$D643 = $00;
+	asm { nop }
+}
+
+void end_program()
+{
+	enable_syscalls();
+	*(unsigned char *)$D644 = $00;
+	asm { nop }
+}
+
+void yield()
+{  
+	enable_syscalls();
+	*(unsigned char *)$D645 = $00;
+	asm { nop }
+}
+
+void showpid()
+{
+	enable_syscalls();
+	*(unsigned char *)$D646 = $00;
+	asm { nop }
+}
+
+unsigned char fork()
+{
+	enable_syscalls();
+	*(unsigned char *)$D647 = $00;
+	asm { nop }
+        return *(unsigned char *)$0300;
+}
+
+void exec(char *program_name)
+{
+        // XXX - Copy the program_name argument to the transfer area at $0300	
+
+	enable_syscalls();
+	*(unsigned char *)$D648 = $00;
+	asm { nop }
+}

@@ -1,0 +1,53 @@
+<C64debugger version="1.0">
+   <Sources values="INDEX,FILE">
+      0,KickAss.jar:/include/autoinclude.asm
+      1,/home/student/repo/unit4/userspace4.3.asm
+   </Sources>
+
+   <Segment name="Default" dest="" values="START,END,FILE_IDX,LINE1,COL1,LINE2,COL2">
+      <Block name="Basic">
+         $0801,$0802,0,38,2,38,6
+         $0803,$0804,0,39,5,39,9
+         $0805,$0805,0,40,5,40,9
+         $0806,$0809,0,41,2,41,6
+         $080a,$080a,0,42,2,42,6
+         $080b,$080c,0,44,5,44,9
+      </Block>
+      <Block name="Program">
+         $080d,$080f,1,5,5,5,7
+         $0810,$0812,1,6,5,6,7
+         $0813,$0815,1,8,5,8,7
+         $0816,$0818,1,11,5,11,7
+         $0819,$081a,1,12,5,12,7
+         $081b,$081d,1,13,5,13,7
+         $081e,$081e,1,14,5,14,7
+         $081f,$081f,1,15,5,15,7
+         $0820,$0821,1,18,5,18,7
+         $0822,$0824,1,19,5,19,7
+         $0825,$0826,1,20,5,20,7
+         $0827,$0829,1,21,5,21,7
+         $082a,$082a,1,22,5,22,7
+         $082b,$082d,1,25,5,25,7
+         $082e,$082f,1,26,5,26,7
+         $0830,$0832,1,27,5,27,7
+         $0833,$0833,1,28,5,28,7
+         $0834,$0834,1,29,5,29,7
+      </Block>
+   </Segment>
+
+   <Labels values="SEGMENT,ADDRESS,NAME">
+      Default,$080d,main
+      Default,$0813,b1
+      Default,$0816,call_syscall01
+      Default,$0820,enable_syscalls
+      Default,$082b,call_syscall00
+      Default,$080b,upstartEnd
+   </Labels>
+
+   <Breakpoints values="SEGMENT,ADDRESS,ARGUMENT">
+   </Breakpoints>
+
+   <Watchpoints values="SEGMENT,ADDRESS1,ADDRESS2,ARGUMENT">
+   </Watchpoints>
+
+</C64debugger>

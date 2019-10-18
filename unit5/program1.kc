@@ -1,0 +1,10 @@
+import "osabi"
+
+void main()
+{
+
+	process_info();
+
+	while(true) continue;
+
+}

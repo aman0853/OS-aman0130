@@ -1,0 +1,1064 @@
+
+import "string" 
+
+#pragma link("mega65hyper.ld") 
+
+  
+
+const char* RASTER = 0xd012; 
+
+const char* VIC_MEMORY = 0xd018; 
+
+const char* SCREEN = 0x0400; 
+
+const char* BGCOL =0xd021; 
+
+const char* COLS =0xd800; 
+
+const char BLACK = 0; 
+
+const char WHITE = 1; 
+
+  
+
+char[] MESSAGE ="checkpoint3.3 by aman0130"; 
+
+  
+
+const char JMP = 0x4c; 
+
+const char NOP = 0xea; 
+
+  
+
+void main () 
+
+{ 
+
+} 
+
+void detect_devices() 
+
+{ 
+
+  unsigned short mem_start = $D000; 
+
+  unsigned short mem_end = $D000; 
+
+  volatile unsigned char *p; 
+
+  bool mem_error = false; 
+
+  unsigned short a=0;
+
+  for (mem_end; mem_end <= $DFF0; mem_end+=10) 
+
+  {  
+	a=detect_vicii(mem_end);
+	if(a==1)
+	{
+	   print_to_screen("vic-ii found at  ");
+	   
+	   print_hex(mem_end);
+
+	   
+	}
+  } 
+ 
+
+
+  } 
+
+  
+char detect_vicii(unsigned short address)
+{
+//pointer where vic-ii is suspected to be
+volatile unsigned char *z;
+unsigned char v2,v3;
+char b=0;
+z=address;
+
+unsigned short i;
+v3=z[$12];
+//waiting at least 64 microseconds
+for(i=1;i<1000;i++) continue;
+v2=z[$12];
+if(v2>v3)
+{b=1;}
+
+return b;
+}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+void print_hex(unsigned short value) 
+
+{ 
+
+  char[5] hex; 
+
+  unsigned char i; 
+
+  for(i=0;i<4;i++) { 
+
+          if (value<0xa000) hex[i]='0'+(char)(value>>12); 
+
+          else hex[i]=(char)(value>>12)-9; 
+
+         value<<=4; 
+
+        } 
+
+         hex[4]=0; 
+
+         print_to_screen(hex); 
+
+} 
+
+unsigned char *current_screen_line = $0400; 
+
+unsigned char current_screen_x = 0; 
+
+  
+
+  
+
+void print_to_screen(char *message) 
+
+{ 
+
+  while(*message){ 
+
+    *(current_screen_line+current_screen_x) =*message++; 
+
+    current_screen_x++; 
+
+   } 
+
+} 
+
+  
+
+void print_newline() 
+
+{ 
+
+  current_screen_line = current_screen_line + 40; 
+
+  current_screen_x = 0; 
+
+} 
+
+  
+
+  
+
+void syscall01() { 
+
+  *(SCREEN+79)= ')'; 
+
+   exit_hypervisor(); 
+
+} 
+
+  
+
+  
+
+void syscall02(){ 
+
+  *(SCREEN+78) = '('; 
+
+    exit_hypervisor(); 
+
+} 
+
+  
+
+  
+
+//system call Function 
+
+  
+
+void exit_hypervisor() 
+
+{ 
+
+// Trigger exit from Hypervisor mode 
+
+*(unsigned char *)$D67F = $01; 
+
+} 
+
+  
+
+void syscall00() 
+
+{ 
+
+   exit_hypervisor(); 
+
+} 
+
+void syscall03() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall04() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall05() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall06() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall07() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall08() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall09() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0A() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0B() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0C() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0D() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0E() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall0F() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall10() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscallsecureentr() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscallsecureexit() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall13() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall14() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall15() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall16() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall17() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall18() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall19() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1A() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1B() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1C() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1D() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1E() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall1F() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall20() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall21() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall22() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall23() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall24() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall25() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall26() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall27() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall28() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall29() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2A() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2B() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2C() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2D() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2E() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall2F() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall30() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall31() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall32() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall33() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall34() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall35() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall36() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall37() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall38() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall39() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3A() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3B() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3C() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3D() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3E() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void syscall3F() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+  
+
+void undefined_trap() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+  
+
+void PAGFAULT() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void RESTOREKEY() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void ALTTABKEY() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void VF011RD() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void VF011WR() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void RESERVED() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+void CPUKIL() 
+
+{ 
+
+  exit_hypervisor(); 
+
+} 
+
+  
+
+void RESET() 
+{ 
+*VIC_MEMORY = 0x14; 
+memset(SCREEN, ' ',40*25); 
+memset(COLS,WHITE,40*25); 
+  print_to_screen("aman0130 operating system starting.."); 
+
+  print_newline(); 
+
+  print_to_screen("testing hardware"); 
+
+  print_newline(); 
+
+  detect_devices();
+
+  print_newline();
+  
+  print_to_screen("finished probing devices");
+
+  exit_hypervisor(); 
+
+  
+
+} 
+
+  
+
+  
+
+#pragma data_seg(Syscall) 
+
+struct SysCall { 
+
+  char xjmp; 
+
+  void()* syscall; 
+
+  char xnop; 
+
+}; 
+
+  
+
+export struct SysCall[] SYSCALLS = { 
+
+     
+
+     { JMP,&syscall00, NOP}, 
+
+     { JMP,&syscall01, NOP}, 
+
+     { JMP,&syscall02, NOP}, 
+
+     { JMP,&syscall03, NOP}, 
+
+     { JMP,&syscall04, NOP}, 
+
+     { JMP,&syscall05, NOP}, 
+
+     { JMP,&syscall06, NOP}, 
+
+     { JMP,&syscall07, NOP}, 
+
+     { JMP,&syscall08, NOP}, 
+
+     { JMP,&syscall09, NOP}, 
+
+     { JMP,&syscall0A, NOP}, 
+
+     { JMP,&syscall0B, NOP}, 
+
+     { JMP,&syscall0C, NOP}, 
+
+     { JMP,&syscall0D, NOP}, 
+
+     { JMP,&syscall0E, NOP}, 
+
+     { JMP,&syscall0F, NOP}, 
+
+     { JMP,&syscall10, NOP}, 
+
+     { JMP,&syscallsecureentr, NOP}, 
+
+     { JMP,&syscallsecureexit, NOP}, 
+
+     { JMP,&syscall13, NOP}, 
+
+     { JMP,&syscall14, NOP}, 
+
+     { JMP,&syscall15, NOP}, 
+
+     { JMP,&syscall16, NOP}, 
+
+     { JMP,&syscall17, NOP}, 
+
+     { JMP,&syscall18, NOP}, 
+
+     { JMP,&syscall19, NOP}, 
+
+     { JMP,&syscall1A, NOP}, 
+
+     { JMP,&syscall1B, NOP}, 
+
+     { JMP,&syscall1C, NOP}, 
+
+     { JMP,&syscall1D, NOP}, 
+
+     { JMP,&syscall1E, NOP}, 
+
+     { JMP,&syscall1F, NOP}, 
+
+     { JMP,&syscall20, NOP}, 
+
+     { JMP,&syscall21, NOP}, 
+
+     { JMP,&syscall22, NOP}, 
+
+     { JMP,&syscall23, NOP}, 
+
+     { JMP,&syscall24, NOP}, 
+
+     { JMP,&syscall25, NOP}, 
+
+     { JMP,&syscall26, NOP}, 
+
+     { JMP,&syscall27, NOP}, 
+
+     { JMP,&syscall28, NOP}, 
+
+     { JMP,&syscall29, NOP}, 
+
+     { JMP,&syscall2A, NOP}, 
+
+     { JMP,&syscall2B, NOP}, 
+
+     { JMP,&syscall2C, NOP}, 
+
+     { JMP,&syscall2D, NOP}, 
+
+     { JMP,&syscall2E, NOP}, 
+
+     { JMP,&syscall2F, NOP}, 
+
+     { JMP,&syscall30, NOP}, 
+
+     { JMP,&syscall31, NOP}, 
+
+     { JMP,&syscall32, NOP}, 
+
+     { JMP,&syscall33, NOP}, 
+
+     { JMP,&syscall34, NOP}, 
+
+     { JMP,&syscall35, NOP}, 
+
+     { JMP,&syscall36, NOP}, 
+
+     { JMP,&syscall37, NOP}, 
+
+     { JMP,&syscall38, NOP}, 
+
+     { JMP,&syscall39, NOP}, 
+
+     { JMP,&syscall3A, NOP}, 
+
+     { JMP,&syscall3B, NOP}, 
+
+     { JMP,&syscall3C, NOP}, 
+
+     { JMP,&syscall3D, NOP}, 
+
+     { JMP,&syscall3E, NOP}, 
+
+     { JMP,&syscall3F, NOP} 
+
+}; 
+
+  
+
+export align(0x100) struct SysCall[] TRAPS = {  
+
+    
+
+   {JMP, &RESET, NOP}, 
+
+   {JMP, &PAGFAULT, NOP},    
+
+   {JMP, &RESTOREKEY, NOP}, 
+
+   {JMP, &ALTTABKEY, NOP}, 
+
+   {JMP, &VF011RD, NOP}, 
+
+   {JMP, &VF011WR, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &undefined_trap, NOP}, 
+
+   {JMP, &CPUKIL, NOP} 
+
+}; 
+
+  
+
+//kickc -a mega65hyper 
+
+//xmega -kickup mega65hyper.bin 
+
+ 
+
+ 
