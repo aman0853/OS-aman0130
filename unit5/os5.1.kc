@@ -18,7 +18,7 @@ const char BLACK = 0;
 const char BLUE = 6;
 const char WHITE = 1;
 
-char[] MESSAGE = "checkpoint 5.1";
+char[] MESSAGE = "checkpoint 5.1 aman0130";
 
 const unsigned char STATE_NOTRUNNING = $00;
 const unsigned char STATE_RUNNING = $01;
@@ -26,23 +26,30 @@ const unsigned char STATE_RUNNING = $01;
 // Process Descriptor Block definition
 struct process_descriptor_block {
   // Unique identifier for the process
-  XXX - You need to add something here
+  
+  //XXX - You need to add something here
+  unsigned char process_id;
 
   // Current state of the process
-  XXX - You need to add something here
+  // XXX - You need to add something here
+ unsigned char process_state;
 
   // Human readable name of the process
-  XXX - You need to add something here
+  //XXX - You need to add something here
+ char* process_name;
   
   // Where this process is stored when not running
   // i.e., where in the $20000-$5FFFF memory range the
   // process is stored when not running.
-  XXX - You need to add something here
-  XXX - You need to add something here
+  // XXX - You need to add something here
+  //XXX - You need to add something here
+  unsigned long  storage_start_address;// = $20000;
+  unsigned long storage_end_address;// = $5FFFF;
  
   // Stored registers and related machine state for this
   // process (for the $D640-$D67E machine state registers)
-  XXX - You need to add something here
+  // XXX - You need to add something here
+ unsigned char* stored_state;
   
 };
 
@@ -58,13 +65,11 @@ const unsigned char *process_context_states = $C900;
 volatile unsigned char *current_screen_line = SCREEN;
 volatile unsigned char current_screen_x = 0;
 
-void print_char(char c)
-{
+void print_char(char c){
    current_screen_line[current_screen_x++]=c;
 }
 
-void print_to_screen(char *message)
-{
+void print_to_screen(char *message){
   char *c=message;
   while(*c) {
     current_screen_line[current_screen_x++]=*c;
@@ -78,7 +83,10 @@ void print_newline()
   current_screen_x=0;
 }
 
-
+void main()
+{
+exit_hypervisor();
+}
 void print_hex(unsigned word value)
 {
   char[5] hex;
@@ -104,6 +112,8 @@ void describe_pdb(unsigned char pdb_number)
   struct process_descriptor_block *p
     =(struct process_descriptor_block *)(((unsigned short)stored_pdbs)+(((unsigned short)pdb_number)<<8));
 
+  //print_to_screen(MESSAGE);
+ print_newline();
   print_to_screen("pdb#");
   print_hex((word)pdb_number);
   print_to_screen(":");
@@ -136,15 +146,531 @@ void describe_pdb(unsigned char pdb_number)
 
 }
 
-XXX - Copy in your syscalls, RESET() function and entry point tables from
-      checkpoint3.1
+//XXX - Copy in your syscalls, RESET() function and entry point tables from
+//      checkpoint3.1
+void syscall00(){
+ exit_hypervisor();
+}
 
-XXX - Now add the following lines to your RESET() function just before the
-      "// Loop forever with 2 bars"
-    current_screen_line = SCREEN;
-    print_newline();
-    print_newline();
-    print_newline();
+void syscall01(){
+exit_hypervisor();
+}
 
-    describe_pdb(0);
+void syscall02(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall03(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+void syscall04(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall05(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall06(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+
+
+void syscall07(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall08(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall09(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall0A(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall0B(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall0C(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall0D(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall0E(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall0F(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall10(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void securEntr(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void securExit(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall13(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall14(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall15(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall16(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall17(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall18(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall19(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall1A(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall1B(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall1C(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall1D(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall1E(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall1F(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall20(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall21(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall22(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall23(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall24(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall25(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall26(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall27(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall28(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall29(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall2A(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall2B(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall2C(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall2D(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall2E(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall2F(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall30(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall31(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall32(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall33(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall34(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall35(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall36(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall37(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall38(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall39(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall3A(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall3B(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall3C(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall3D(){
+ exit_hypervisor();
+//*(SCREEN+79) = '}';
+}
+
+void syscall3E(){
+ exit_hypervisor();
+//*(SCREEN+78) = '{';
+}
+
+void syscall3F(){
+ exit_hypervisor();
+}
+void pagfault(){
+}
+void restorKey(){
+}
+void altTabKey(){
+}
+
+void exit_hypervisor()
+{
+*(unsigned char *)$D67F = $01;
+}
+
+void undefined_trap()
+{
+}
+
+void RESET()
+{
+	//Initialize screen memory, and select correct font
+	*VIC_MEMORY = 0x14;
+	// Fill the screen with spaces
+	memset(SCREEN,' ',40*25);
+	//set the color of every character on the screen to white
+	memset(COLS,WHITE, 40*25);
+	//Print the "hello world!" message
+	char* sc= SCREEN+40; // Display it one line down on the screen
+	char* msg= MESSAGE;// The messag to display
+	// A simple copy routine to copy the string
+	//print_to_screen(MESSAGE);
+	//print_newline();
+
+	while(*msg){
+		*sc++ = *msg++;
+	}
+
+	current_screen_line = SCREEN;
+	print_newline();
+	print_newline();
+	describe_pdb(0);
+	exit_hypervisor();
+
+	while(true){
+   		if(*RASTER==54 || *RASTER==66){
+      			*BGCOL = WHITE;
+   		}else{
+      			*BGCOL =BLACK;
+    		}
+	}
+
+	exit_hypervisor();
+}
+
+
+
+#pragma data_seg(Syscall)
+
+struct SysCall{
+char xjmp;  //Holds $4C, the JMP $nnn opcode
+void()* syscall;  // Holds handler address, will be the target of the JMP
+char xnop;  // Holds $EA, the NOP opcode
+};
+
+// To save writing 0x4C and 0xEA all the time, we define them as constants
+const char JMP = 0x4c;
+const char NOP = 0xea;
+
+
+
+
+//XXX - Now add the following lines to your RESET() function just before the
+     // Loop forever with 2 bars"
+    
+export align(0x100) struct SysCall[] SYSCALL_RESET = {
+{JMP, &syscall00,NOP},
+{JMP, &syscall01, NOP},
+{JMP, &syscall02,NOP},
+{JMP, &syscall03, NOP},
+{JMP, &syscall04,NOP},
+{JMP, &syscall05, NOP},
+{JMP, &syscall06,NOP},
+{JMP, &syscall07, NOP},
+{JMP, &syscall08,NOP},
+{JMP, &syscall09, NOP},
+{JMP, &syscall0A,NOP},
+{JMP, &syscall0B, NOP},
+{JMP, &syscall0C,NOP},
+{JMP, &syscall0D, NOP},
+{JMP, &syscall0E,NOP},
+{JMP, &syscall0F, NOP},
+{JMP, &syscall10,NOP},
+{JMP, &securEntr, NOP},
+{JMP, &securExit,NOP},
+{JMP, &syscall13, NOP},
+{JMP, &syscall14,NOP},
+{JMP, &syscall15, NOP},
+{JMP, &syscall16,NOP},
+{JMP, &syscall17, NOP},
+{JMP, &syscall18,NOP},
+{JMP, &syscall19, NOP},
+{JMP, &syscall1A,NOP},
+{JMP, &syscall1B, NOP},
+{JMP, &syscall1C,NOP},
+{JMP, &syscall1D, NOP},
+{JMP, &syscall1E,NOP},
+{JMP, &syscall1F, NOP},
+{JMP, &syscall20,NOP},
+{JMP, &syscall21, NOP},
+{JMP, &syscall22,NOP},
+{JMP, &syscall23, NOP},
+{JMP, &syscall24,NOP},
+{JMP, &syscall25, NOP},
+{JMP, &syscall26,NOP},
+{JMP, &syscall27, NOP},
+{JMP, &syscall28,NOP},
+{JMP, &syscall29, NOP},
+{JMP, &syscall2A,NOP},
+{JMP, &syscall2B, NOP},
+{JMP, &syscall2C,NOP},
+{JMP, &syscall2D, NOP},
+{JMP, &syscall2E,NOP},
+{JMP, &syscall2F, NOP},
+{JMP, &syscall30,NOP},
+{JMP, &syscall31, NOP},
+{JMP, &syscall32,NOP},
+{JMP, &syscall33, NOP},
+{JMP, &syscall34,NOP},
+{JMP, &syscall35, NOP},
+{JMP, &syscall36,NOP},
+{JMP, &syscall37, NOP},
+{JMP, &syscall38,NOP},
+{JMP, &syscall39, NOP},
+{JMP, &syscall3A,NOP},
+{JMP, &syscall3B, NOP},
+{JMP, &syscall3C,NOP},
+{JMP, &syscall3D, NOP},
+{JMP, &syscall3E,NOP},
+{JMP, &syscall3F, NOP}
+};
+
+void VF011RD()
+{
+
+}
+void VF011WR()
+{
+}
+void RESERVED()
+{
+}
+void CPUKIL()
+{
+}
+
+
+
+export align(0x100) struct SysCall[] TRAPS = {
+{JMP, &RESET,NOP},
+{JMP, &pagfault, NOP},
+{JMP, &restorKey,NOP},
+{JMP, &altTabKey, NOP},
+{JMP, &VF011RD,NOP},
+{JMP, &VF011WR, NOP},
+{JMP, &RESERVED,NOP},
+{JMP, &CPUKIL, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap,NOP},
+{JMP, &undefined_trap, NOP},
+{JMP, &undefined_trap,NOP}
+};
+
+
+
+
 

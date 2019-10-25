@@ -1,0 +1,72 @@
+<C64debugger version="1.0">
+   <Sources values="INDEX,FILE">
+      0,KickAss.jar:/include/autoinclude.asm
+      1,/home/student/repo/unit5/program3.asm
+   </Sources>
+
+   <Segment name="Default" dest="" values="START,END,FILE_IDX,LINE1,COL1,LINE2,COL2">
+      <Block name="Basic">
+         $0801,$0802,0,38,2,38,6
+         $0803,$0804,0,39,5,39,9
+         $0805,$0805,0,40,5,40,9
+         $0806,$0809,0,41,2,41,6
+         $080a,$080a,0,42,2,42,6
+         $080b,$080c,0,44,5,44,9
+      </Block>
+      <Block name="Program">
+         $080d,$080f,1,5,5,5,7
+         $0810,$0811,1,6,5,6,7
+         $0812,$0813,1,7,5,7,7
+         $0814,$0816,1,8,5,8,7
+         $0817,$0819,1,10,5,10,7
+         $081a,$081c,1,11,5,11,7
+         $081d,$081f,1,13,5,13,7
+         $0820,$0822,1,14,5,14,7
+         $0823,$0825,1,17,5,17,7
+         $0826,$0827,1,18,5,18,7
+         $0828,$082a,1,19,5,19,7
+         $082b,$082b,1,20,5,20,7
+         $082c,$082c,1,21,5,21,7
+         $082d,$082e,1,24,5,24,7
+         $082f,$0831,1,25,5,25,7
+         $0832,$0833,1,26,5,26,7
+         $0834,$0836,1,27,5,27,7
+         $0837,$0837,1,28,5,28,7
+         $0838,$083a,1,31,5,31,7
+         $083b,$083c,1,32,5,32,7
+         $083d,$083f,1,33,5,33,7
+         $0840,$0840,1,34,5,34,7
+         $0841,$0841,1,35,5,35,7
+         $0842,$0844,1,38,5,38,7
+         $0845,$0846,1,39,5,39,7
+         $0847,$0849,1,40,5,40,7
+         $084a,$084a,1,41,5,41,7
+         $084b,$084b,1,42,5,42,7
+         $084c,$084e,1,45,5,45,7
+         $084f,$0850,1,46,5,46,7
+         $0851,$0853,1,47,5,47,7
+         $0854,$0854,1,48,5,48,7
+         $0855,$0857,1,49,5,49,7
+         $0858,$0858,1,50,5,50,7
+      </Block>
+   </Segment>
+
+   <Labels values="SEGMENT,ADDRESS,NAME">
+      Default,$080d,main
+      Default,$0817,__b3
+      Default,$081d,__b1
+      Default,$0823,showpid
+      Default,$082d,enable_syscalls
+      Default,$0838,yield
+      Default,$0842,exec
+      Default,$084c,fork
+      Default,$080b,upstartEnd
+   </Labels>
+
+   <Breakpoints values="SEGMENT,ADDRESS,ARGUMENT">
+   </Breakpoints>
+
+   <Watchpoints values="SEGMENT,ADDRESS1,ADDRESS2,ARGUMENT">
+   </Watchpoints>
+
+</C64debugger>
